@@ -1,0 +1,10 @@
+#project dep
+node_modules
+.cache
+
+#build
+public
+build
+
+#other
+.DS_Store
