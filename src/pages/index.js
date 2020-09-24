@@ -15,17 +15,24 @@ const App = ({data}) => {
     <>
       <Layout>
         {data.allMdx.nodes.map(({ id, fields, excerpt, frontmatter }) => (
+          
           <Link to={ fields.slug } 
           style={ MaxWidth }
           className="card mb-2 p-3 mx-auto">
             <div className="d-flex flex-column ">
-            <div className="flex-grow-1">
-              <h1>{frontmatter.title}</h1>
-              <p>{frontmatter.date}</p>
-            </div>
-            <p className="flex-grow-2">{excerpt}</p>
+              
+              <div className="">
+                <h1 className="font-weight-bold title-link">{frontmatter.title}</h1>
+                <p className="text-secondary">{frontmatter.date}</p>
+              </div>
+              
+              <div className="d-flex justify-content-between flex-wrap">
+              <p className="text-secondary">{excerpt}</p>
+              <span className="text-primary">{ fields.readingTime.text }</span>
+              </div>
             </div>
           </Link>
+
         ))}
          <Dump data={ data }/>
       </Layout>
@@ -51,6 +58,9 @@ export const query = graphql`
           }
           fields {
             slug
+            readingTime {
+              text
+            }
           }
         }
       }

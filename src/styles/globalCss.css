@@ -35,3 +35,7 @@ a:hover {
 a:active {
   text-decoration: none;
 }
+
+.title-link:hover{
+  color: rgb(67, 33, 204);
+}
