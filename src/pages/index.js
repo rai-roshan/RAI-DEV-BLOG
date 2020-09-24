@@ -5,23 +5,29 @@ import styled from 'styled-components';
 import Layout from '../components/Layout';
 import Dump from '../components/Dump';
 
-const PostWrapper = styled.div``;
+const MaxWidth = {
+  maxWidth: "40rem"
+};
 
 const App = ({data}) => {
 
   return (
     <>
       <Layout>
-        <Dump data={ data }/>
         {data.allMdx.nodes.map(({ id, fields, excerpt, frontmatter }) => (
-          <PostWrapper>
-          <Link to={ fields.slug }>
-            <h1>{frontmatter.title}</h1>
-            <p>{frontmatter.date}</p>
-            <p>{excerpt}</p>
+          <Link to={ fields.slug } 
+          style={ MaxWidth }
+          className="card mb-2 p-3 mx-auto">
+            <div className="d-flex flex-column ">
+            <div className="flex-grow-1">
+              <h1>{frontmatter.title}</h1>
+              <p>{frontmatter.date}</p>
+            </div>
+            <p className="flex-grow-2">{excerpt}</p>
+            </div>
           </Link>
-          </PostWrapper>
         ))}
+         <Dump data={ data }/>
       </Layout>
     </>
   );

@@ -4,6 +4,8 @@ module.exports = {
         description : "This is a blog platform specially for newbie developers"
     },
     plugins : [
+        'gatsby-plugin-sharp',
+        'gatsby-transformer-sharp',
         'gatsby-plugin-styled-components',
         {
             resolve : 'gatsby-plugin-mdx',
@@ -15,7 +17,23 @@ module.exports = {
             resolve : 'gatsby-source-filesystem',
             options : {
                 path : `${__dirname}/posts`,
-                name : 'posts'
+                name : 'posts',
+                gatsbyRemarkPlugins: [
+                    {
+                      resolve: `gatsby-remark-images`,
+                      options: {
+                        maxWidth: 590,
+                      },
+                    },
+                  ],
+                plugins: [
+                    {
+                      resolve: `gatsby-remark-images`,
+                      options: {
+                        maxWidth: 590,
+                      },
+                    },
+                  ]
             }
         }]
 };

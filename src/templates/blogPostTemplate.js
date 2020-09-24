@@ -1,8 +1,28 @@
 import React from 'react';
 import {MDXRenderer} from 'gatsby-plugin-mdx';
 import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
 import Layout from '../components/Layout';
+import BlogTitle from '../components/BlogTitle';
+
+const Article = {
+  maxWidth : "54rem",
+  margin : "0 auto",
+  backgroundColor : "white",
+  borderRadius : "5px"
+};
+
+const MainCont = {
+  margin : "0 3rem"
+}
+
+const ImgHead = {
+  maxWidth : "54rem", 
+  borderTopLeftRadius : "5px",
+  borderTopRightRadius : "5px",
+  margin : "0 auto",
+}
 
 
 const BlogPost = ({data}) => {
@@ -10,9 +30,23 @@ const BlogPost = ({data}) => {
 
     return (
     <Layout>
-      <h1>{ frontmatter.title }</h1>
-      <p>{ frontmatter.date }</p>
-      <MDXRenderer>{ body }</MDXRenderer>
+
+      <div style={ Article }>
+        
+        <Img
+        style={ ImgHead }
+        sizes={frontmatter.cover.childImageSharp.sizes}/>
+
+        <BlogTitle
+        title={ frontmatter.title }
+        date={ frontmatter.date } />
+
+        <div style={ MainCont }>
+        <MDXRenderer>{ body }</MDXRenderer>
+        </div>
+
+      </div>
+
     </Layout>
   );
 };
@@ -24,6 +58,14 @@ export const PostQuery = graphql`
                 date(formatString: "DD MMMM YYYY")
                 title
                 published
+                cover {
+                  publicURL
+                  childImageSharp {
+                    sizes(maxWidth: 3000, maxHeight: 1400) {
+                      ...GatsbyImageSharpSizes
+                    }
+                  }
+                }
               }
         body
     }}`;
