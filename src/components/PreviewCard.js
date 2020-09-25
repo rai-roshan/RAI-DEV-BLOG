@@ -11,7 +11,7 @@ const ImgHead = {
     margin: "0 auto"
   }
 
-const PreviewCard = ( { key, slug, title, date, sortCont, time, preview} ) => {
+const PreviewCard = ( { key, slug, title, date, sortCont, time, preview , tags } ) => {
 
     return <div >
     
@@ -34,6 +34,12 @@ const PreviewCard = ( { key, slug, title, date, sortCont, time, preview} ) => {
         <div className="d-flex justify-content-between flex-wrap">
         <p className="text-secondary">{ sortCont }</p>
         <span className="text-primary">{ time }</span>
+        </div>
+
+        <div className="d-flex flex-wrap mt-2">
+          { tags.map( tag => (<a 
+          href="#" 
+          className="badge badge-light mr-2">#{ tag }</a>)) }
         </div>
       </div>
     </Link>

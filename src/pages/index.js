@@ -32,6 +32,7 @@ export const query = graphql`
             date(formatString: "DD MMMM YYYY")
             published
             title
+            tags
             cover {
             publicURL
             childImageSharp {

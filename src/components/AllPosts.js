@@ -6,10 +6,6 @@ import PostCard from './PostCard';
 import PreviewCard from './PreviewCard';
 
 
-const Width = {
-    minWidth : "28rem"
-};
-
 const AllPost = ({ data }) => {
     console.log("data : ", data);
     return (<div className="col-lg-6 col-md-8 col-sm-12">
@@ -22,14 +18,16 @@ const AllPost = ({ data }) => {
                   title={ frontmatter.title }
                   date={ frontmatter.date }
                   sortCont={ excerpt }
-                  time={ fields.readingTime.text }/> :
+                  time={ fields.readingTime.text }
+                  tags={ frontmatter.tags } /> :
                   <PostCard 
                     key={id}
                     slug={ fields.slug }
                     title={ frontmatter.title }
                     date={ frontmatter.date }
                     sortCont={ excerpt }
-                    time={ fields.readingTime.text } />
+                    time={ fields.readingTime.text }
+                    tags={ frontmatter.tags } />
           })}
             
           {

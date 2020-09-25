@@ -14,20 +14,20 @@ const ImgHeight = {
 
 const Header = ({ siteTitle, siteDescription }) => {
     
-    return <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    return <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3">
         <div className="container-xl">
             
             <div className="d-flex w-100 align-items-center">
                 <Link 
-                className="card p-2 mr-auto" 
+                className="card p-2  mr-sm-2 mr-md-4" 
                 to='/'
                 style={ BlackBg }>
                     <span className="font-weight-bold h4 mb-0">{ siteTitle }</span>
                 </Link>
 
-                <form class="form-inline">
+                <form className="form-inline mr-auto">
                 <input 
-                class="form-control mr-sm-2" 
+                className="form-control" 
                 type="search" 
                 placeholder="Search" 
                 aria-label="Search" />

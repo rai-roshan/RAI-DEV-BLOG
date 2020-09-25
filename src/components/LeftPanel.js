@@ -1,6 +1,10 @@
 import React from 'react';
+
 import useSiteMetadata from '../hooks/useSiteMetadata';
+import GetAllTags from '../hooks/getAllTags';
+
 import avatar from '../images/avatar.png';
+import Dump from './Dump';
 
 const Size = {
     height: "100vh",
@@ -11,28 +15,50 @@ const ImgHeight = {
   height: "3rem"
 };
 
+const AuthHead = ({ author, description }) =>{
+
+  return <button type="button" className="list-group-item bg-transparent">
+  <div className="w-100">
+    <img 
+    src={ avatar } 
+    alt="rairoshan"
+    className="rounded-circle" 
+    style={ ImgHeight } />
+  </div>
+  <div className="w-100 font-weight-bold my-1">{ author }</div>
+  <div className="w-100">{ description }</div>
+</button>
+};
+
 const LeftPanel = () => {
 
     const { description , author } = useSiteMetadata();
+    const allTags = GetAllTags();
 
     return <div 
     id="left-pan"
-    class="list-group col-lg-3 col-md-4 list-group-flush" style={ Size }>
-    <button type="button" class="list-group-item bg-transparent">
-      <div className="w-100">
-        <img 
-        src={ avatar } 
-        alt="rairoshan"
-        className="rounded-circle" 
-        style={ ImgHeight } />
+    className="list-group col-lg-3 col-md-4 list-group-flush" style={ Size }>
+      <AuthHead 
+      author={ author }
+      description={ description }/>
+      <div 
+      className="list-group-item disabled bg-transparent font-weight-bold">
+        Tags
       </div>
-      <div className="w-100 font-weight-bold my-1">{ author }</div>
-      <div className="w-100">{ description }</div>
-    </button>
-    <button type="button" class="list-group-item list-group-item-action bg-transparent">Dapibus ac facilisis in</button>
-    <button type="button" class="list-group-item list-group-item-action bg-transparent">Morbi leo risus</button>
-    <button type="button" class="list-group-item list-group-item-action bg-transparent">Porta ac consectetur ac</button>
-    <button type="button" class="list-group-item list-group-item-action bg-transparent" disabled>Vestibulum at eros</button>
+      {
+        allTags.map( tag => {
+          return <button 
+          key={ tag.fieldValue }
+          type="button" 
+          className="list-group-item  bg-transparent d-flex justify-content-between align-items-center">
+            #{ tag.fieldValue }
+            <span 
+            className="badge badge-primary badge-pill">
+              { tag.totalCount }
+            </span>
+          </button>
+        })
+      }
   </div>
 };
 
