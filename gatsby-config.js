@@ -1,7 +1,8 @@
 module.exports = {
     siteMetadata : {
-        title : "DEV BLOG",
-        description : "This is a blog platform specially for newbie developers"
+        title : "RAI",
+        description : "This is a blog platform specially for newbie developers",
+        author : "Rai Roshan"
     },
     plugins : [
         'gatsby-plugin-sharp',

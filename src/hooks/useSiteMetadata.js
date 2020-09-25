@@ -8,6 +8,7 @@ const useSiteMetadata = () => {
               siteMetadata {
                 description
                 title
+                author
               }
             }
           }

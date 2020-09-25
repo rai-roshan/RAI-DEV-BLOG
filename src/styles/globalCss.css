@@ -39,3 +39,17 @@ a:active {
 .title-link:hover{
   color: rgb(67, 33, 204);
 }
+
+/* RESPONSIVE */
+/*midian*/
+@media screen and (max-width: 992px) {
+  #right-pan{
+    display: none;
+  }
+}
+/*small*/
+@media screen and (max-width: 760px){
+  #left-pan{
+    display: none;
+  }
+}

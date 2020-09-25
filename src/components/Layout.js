@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import Header from './Header';
@@ -13,7 +12,7 @@ const Layout=( { children }) => {
             siteTitle={ title }
             siteDescription={ description } />
             <div 
-            className="container">
+            className="container-xl">
                 { children }
             </div>
             </div>
