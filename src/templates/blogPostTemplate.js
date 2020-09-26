@@ -5,10 +5,10 @@ import Img from 'gatsby-image';
 
 import Layout from '../components/Layout';
 import BlogTitle from '../components/BlogTitle';
+import RightPanel from '../components/RightPanel';
 
 const Article = {
-  maxWidth : "54rem",
-  margin : "0 auto",
+  maxWidth : "50rem",
   backgroundColor : "white",
   borderRadius : "5px"
 };
@@ -17,8 +17,12 @@ const MainCont = {
   margin : "0 3rem"
 }
 
+const wid50rem = {
+  width: "50rem"
+};
+
 const ImgHead = {
-  maxWidth : "54rem", 
+  width : "100%", 
   borderTopLeftRadius : "5px",
   borderTopRightRadius : "5px",
   margin : "0 auto",
@@ -27,26 +31,29 @@ const ImgHead = {
 
 const BlogPost = ({data}) => {
     const { frontmatter , body } = data.mdx;
-
+    console.log("===========tags : ", frontmatter.tags);
     return (
     <Layout>
+      <div className="row w-100">
+          
+          <div style={ Article } className="col-lg-9 col-md-12 mx-auto px-0">
+            
+            <Img
+            style={ ImgHead }
+            sizes={frontmatter.cover.childImageSharp.sizes}/>
 
-      <div style={ Article }>
-        
-        <Img
-        style={ ImgHead }
-        sizes={frontmatter.cover.childImageSharp.sizes}/>
+            <BlogTitle
+            title={ frontmatter.title }
+            date={ frontmatter.date } 
+            tags={ frontmatter.tags }/>
 
-        <BlogTitle
-        title={ frontmatter.title }
-        date={ frontmatter.date } />
+            <div style={ MainCont }>
+            <MDXRenderer>{ body }</MDXRenderer>
+            </div>
 
-        <div style={ MainCont }>
-        <MDXRenderer>{ body }</MDXRenderer>
-        </div>
-
+          </div>
+          <RightPanel/>
       </div>
-
     </Layout>
   );
 };
@@ -57,6 +64,7 @@ export const PostQuery = graphql`
             frontmatter {
                 date(formatString: "DD MMMM YYYY")
                 title
+                tags
                 published
                 cover {
                   publicURL

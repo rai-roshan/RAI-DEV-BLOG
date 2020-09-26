@@ -15,7 +15,7 @@ const ImgHeight = {
 
 const Header = ({ siteTitle, siteDescription }) => {
     
-    return <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    return <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3 fixed-top">
         <div className="container-xl">
             
             <div className="d-flex w-100 align-items-center">

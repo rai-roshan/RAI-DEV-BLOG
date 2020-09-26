@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import AllPost from '../components/AllPosts';
 import LeftPanel from '../components/LeftPanel';
-import RightPanel from '../components/RightPalnel';
+import RightPanel from '../components/RightPanel';
 
 import GetAllPost from '../hooks/getAllPost';
 import { AllPostContext } from '../contexts/AllPostContext';
