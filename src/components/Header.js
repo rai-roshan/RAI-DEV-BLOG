@@ -2,6 +2,7 @@ import { Link } from 'gatsby';
 import React from 'react';
 
 import avatar from '../images/avatar.png';
+import SearchBar from './SearchBar';
 
 const BlackBg = {
     backgroundColor : "black",
@@ -25,13 +26,7 @@ const Header = ({ siteTitle, siteDescription }) => {
                     <span className="font-weight-bold h4 mb-0">{ siteTitle }</span>
                 </Link>
 
-                <form className="form-inline mr-auto">
-                <input 
-                className="form-control" 
-                type="search" 
-                placeholder="Search" 
-                aria-label="Search" />
-                </form>
+                <SearchBar />
 
                 <button className="btn btn-primary font-weight-bold mr-4">Contact</button>
                 <Link to="#" >

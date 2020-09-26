@@ -4,13 +4,14 @@ import useSiteMetadata from '../hooks/useSiteMetadata';
 import Header from './Header';
 
 
-const Layout=( { children }) => {
+const Layout=( { children, allPosts }) => {
     const { title, description } = useSiteMetadata();
 
     return <div>
             <Header 
             siteTitle={ title }
-            siteDescription={ description } />
+            siteDescription={ description } 
+            allPosts={ allPosts }/>
             <div 
             className="container-xl">
                 { children }

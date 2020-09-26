@@ -1,5 +1,8 @@
 import { MDXProvider } from '@mdx-js/react';
 import React from 'react';
+
+import AllPostProvider from './src/contexts/AllPostContext';
+
 import Code from './src/components/Code';
 
 const components = {
@@ -24,8 +27,10 @@ const components = {
 };
 
 export const wrapRootElement = ( {element} )=>(
+    <AllPostProvider>
     <MDXProvider 
     components={ components }>
         { element }
     </MDXProvider>
+    </AllPostProvider>
 );

@@ -5,11 +5,11 @@ import Dump from './Dump';
 import PostCard from './PostCard';
 import PreviewCard from './PreviewCard';
 
-
-const AllPost = ({ data }) => {
-    console.log("data : ", data);
+//
+const AllPost = ({ allPosts }) => {
+    console.log("data : ", allPosts);
     return (<div className="col-lg-6 col-md-8 col-sm-12">
-          {data.allMdx.nodes.map(({ id, fields, excerpt, frontmatter }, index) => {
+          {allPosts.map(({ id, fields, excerpt, frontmatter }, index) => {
   
             return index === 0 ? <PreviewCard 
                   preview={ frontmatter.cover.childImageSharp.sizes }
@@ -31,7 +31,7 @@ const AllPost = ({ data }) => {
           })}
             
           {
-          <Dump data={ data }/>
+          //<Dump data={ data }/>
           }
         </div>
     );
