@@ -9,6 +9,11 @@ const components = {
     h2 : ( {children} )=>(
     <h2 style={ {color : 'rebeccapurple'} }>{ children }</h2>
     ),
+    img : (props)=>(
+      <div className="w-100 d-flex align-items-center justify-content-between">
+          <img {...props} />
+      </div>
+    ),
     'p.inlineCode' : props => (
         <code style={ {backgroundColor : 'lightgray'} }>{ props.children }</code>
     ),

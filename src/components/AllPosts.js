@@ -12,7 +12,7 @@ const AllPost = ({ allPosts }) => {
           {allPosts.map(({ id, fields, excerpt, frontmatter }, index) => {
   
             return index === 0 ? <PreviewCard 
-                  preview={ frontmatter.cover.childImageSharp.sizes }
+                  preview={ frontmatter.cover ? frontmatter.cover.childImageSharp.sizes : null }
                   key={id}
                   slug={ fields.slug }
                   title={ frontmatter.title }

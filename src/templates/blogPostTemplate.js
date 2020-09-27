@@ -38,9 +38,9 @@ const BlogPost = ({data}) => {
           
           <div style={ Article } className="col-lg-9 col-md-12 mx-auto px-0">
             
-            <Img
+            { frontmatter.cover ? <Img
             style={ ImgHead }
-            sizes={frontmatter.cover.childImageSharp.sizes}/>
+            sizes={frontmatter.cover.childImageSharp.sizes}/> : null }
 
             <BlogTitle
             title={ frontmatter.title }

@@ -15,10 +15,10 @@ const PreviewCard = ( { key, slug, title, date, sortCont, time, preview , tags }
 
     return <div >
     
-    <Img
+    {preview ? <Img
     className="rounded-top"
     style={ ImgHead }
-    sizes={preview}/>
+    sizes={preview}/> : null }
 
     <Link to={ slug } 
     key={ key }
