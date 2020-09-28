@@ -1,4 +1,5 @@
 import React from 'react';
+import FadeIn from 'react-fade-in';
 //import { graphql } from 'gatsby';
 
 import Dump from './Dump';
@@ -9,6 +10,8 @@ import PreviewCard from './PreviewCard';
 const AllPost = ({ allPosts }) => {
     console.log("data : ", allPosts);
     return (<div className="col-lg-6 col-md-8 col-sm-12">
+          <FadeIn>
+          
           {allPosts.map(({ id, fields, excerpt, frontmatter }, index) => {
   
             return index === 0 ? <PreviewCard 
@@ -33,6 +36,7 @@ const AllPost = ({ allPosts }) => {
           {
           //<Dump data={ data }/>
           }
+        </FadeIn>
         </div>
     );
   

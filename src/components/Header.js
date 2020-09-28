@@ -28,8 +28,8 @@ const Header = ({ siteTitle, siteDescription }) => {
 
                 <SearchBar />
 
-                <button className="btn btn-primary font-weight-bold mr-4">Contact</button>
-                <Link to="#" >
+                <Link to="/contact" className="btn btn-primary font-weight-bold mr-4">Contact</Link>
+                <Link to="/contact" >
                     <img 
                     src={ avatar } 
                     alt="rairoshan"
