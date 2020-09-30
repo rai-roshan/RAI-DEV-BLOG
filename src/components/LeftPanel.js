@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'gatsby';
 
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import GetAllTags from '../hooks/getAllTags';
+import GetPostFromTag from '../hooks/getPostFromTag';
 
 import avatar from '../images/avatar.png';
-import Dump from './Dump';
 
 const Size = {
     height: "100vh",
@@ -38,16 +39,19 @@ const LeftPanel = () => {
     return <div 
     id="left-pan"
     className="list-group col-lg-3 col-md-4 list-group-flush" style={ Size }>
+
       <AuthHead 
       author={ author }
       description={ description }/>
+
       <div 
       className="list-group-item disabled bg-transparent font-weight-bold">
         Tags
       </div>
+
       {
         allTags.map( tag => {
-          return <button 
+          return <Link to={`/${tag.fieldValue}`}
           key={ tag.fieldValue }
           type="button" 
           className="list-group-item  bg-transparent d-flex justify-content-between align-items-center">
@@ -56,9 +60,11 @@ const LeftPanel = () => {
             className="badge badge-primary badge-pill">
               { tag.totalCount }
             </span>
-          </button>
+          </Link>
+  
         })
       }
+
   </div>
 };
 

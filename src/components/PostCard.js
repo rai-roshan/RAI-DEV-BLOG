@@ -8,7 +8,7 @@ const MaxWidth = {
 const PostCard = ( { key, slug, title, date, sortCont, time , tags } ) => {
 
   console.log(" raitag : ", tags);
-    return <Link to={ slug } 
+    return <Link to={slug}  
     key={ key }
     style={ MaxWidth }
     className="card mb-2 p-3 mx-auto">
