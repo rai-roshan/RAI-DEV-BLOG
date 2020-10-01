@@ -22,6 +22,13 @@ export const AllPostOfTagQuery = graphql`
 query AllPostOfTagQuery($tag : String!) {
     allMdx(filter: {frontmatter: {tags: {eq: $tag }}}) {
      nodes {
+        featuredImg {
+            childImageSharp {
+                sizes(maxWidth: 3000, maxHeight: 1400) {
+                    ...GatsbyImageSharpSizes
+                }
+            }
+        }
           excerpt(pruneLength: 250)   
           id
           frontmatter {
@@ -29,13 +36,7 @@ query AllPostOfTagQuery($tag : String!) {
               published
               title
               tags
-              cover {
-                publicURL
-                childImageSharp {
-                    sizes(maxWidth: 3000, maxHeight: 1400) {
-                    ...GatsbyImageSharpSizes
-                    }
-                }}
+              
           }
           fields {
               slug
@@ -49,3 +50,12 @@ query AllPostOfTagQuery($tag : String!) {
 `; 
 
 export default AllPostOfTag;
+/*
+cover {
+                publicURL
+                childImageSharp {
+                    sizes(maxWidth: 3000, maxHeight: 1400) {
+                    ...GatsbyImageSharpSizes
+                    }
+                }}
+                */

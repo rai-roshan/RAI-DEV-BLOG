@@ -30,7 +30,7 @@ const ImgHead = {
 
 
 const BlogPost = ({data}) => {
-    const { frontmatter , body } = data.mdx;
+    const { frontmatter , body , featuredImg } = data.mdx;
     console.log("===========tags : ", frontmatter.tags);
     return (
     <Layout>
@@ -38,9 +38,9 @@ const BlogPost = ({data}) => {
           
           <div style={ Article } className="col-lg-9 col-md-12 mx-auto px-0">
             
-            { frontmatter.cover ? <Img
+            { featuredImg ? <Img
             style={ ImgHead }
-            sizes={frontmatter.cover.childImageSharp.sizes}/> : null }
+            sizes={featuredImg.childImageSharp.sizes}/> : null }
 
             <BlogTitle
             title={ frontmatter.title }
@@ -61,12 +61,27 @@ const BlogPost = ({data}) => {
 export const PostQuery = graphql`
      query PostQuery($slug: String!) {
         mdx(fields: {slug: {eq: $slug}}) {
+          featuredImg {
+            childImageSharp {
+                sizes(maxWidth: 3000, maxHeight: 1400) {
+                    ...GatsbyImageSharpSizes
+                }
+            }
+        }
             frontmatter {
                 date(formatString: "DD MMMM YYYY")
                 title
                 tags
                 published
-                cover {
+                
+              }
+        body
+    }}`;
+
+export default BlogPost;
+
+/*
+cover {
                   publicURL
                   childImageSharp {
                     sizes(maxWidth: 3000, maxHeight: 1400) {
@@ -74,9 +89,4 @@ export const PostQuery = graphql`
                     }
                   }
                 }
-              }
-        body
-    }}`;
-
-export default BlogPost;
-
+                */

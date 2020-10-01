@@ -10,6 +10,13 @@ const GetAllPost = () => {
     allMdx(
         filter: {frontmatter: {published: {eq: true}}}, sort: {fields: frontmatter___date, order: DESC}) {
         nodes {
+        featuredImg {
+            childImageSharp {
+                sizes(maxWidth: 3000, maxHeight: 1400) {
+                    ...GatsbyImageSharpSizes
+                }
+            }
+        }
         excerpt(pruneLength: 250)   
         id
         frontmatter {
@@ -17,14 +24,7 @@ const GetAllPost = () => {
             published
             title
             tags
-            cover {
-            publicURL
-            childImageSharp {
-                sizes(maxWidth: 3000, maxHeight: 1400) {
-                ...GatsbyImageSharpSizes
-                }
-            }
-            }
+            
         }
         fields {
             slug
@@ -41,3 +41,14 @@ const GetAllPost = () => {
 } 
 
 export default GetAllPost;
+
+/*
+cover {
+            publicURL
+            childImageSharp {
+                sizes(maxWidth: 3000, maxHeight: 1400) {
+                ...GatsbyImageSharpSizes
+                }
+            }
+            }
+            */

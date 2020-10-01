@@ -3,7 +3,6 @@ import { Link } from 'gatsby';
 
 import useSiteMetadata from '../hooks/useSiteMetadata';
 import GetAllTags from '../hooks/getAllTags';
-import GetPostFromTag from '../hooks/getPostFromTag';
 
 import avatar from '../images/avatar.png';
 

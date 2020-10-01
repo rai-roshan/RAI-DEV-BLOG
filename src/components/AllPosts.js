@@ -12,10 +12,10 @@ const AllPost = ({ allPosts }) => {
     return (<div className="col-lg-6 col-md-8 col-sm-12">
           <FadeIn>
           
-          {allPosts.map(({ id, fields, excerpt, frontmatter }, index) => {
+          {allPosts.map(({ id, fields, excerpt, frontmatter , featuredImg }, index) => {
   
             return index === 0 ? <PreviewCard 
-                  preview={ frontmatter.cover ? frontmatter.cover.childImageSharp.sizes : null }
+                  preview={ featuredImg ? featuredImg.childImageSharp.sizes : null }
                   key={id}
                   slug={ fields.slug }
                   title={ frontmatter.title }
