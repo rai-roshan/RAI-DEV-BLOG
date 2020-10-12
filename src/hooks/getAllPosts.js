@@ -6,7 +6,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 const GetAllPost = () => {
     const data = useStaticQuery(
         graphql`query AllPosts {
-            allGraphCmsDevBlog(sort: {order: ASC, fields: date}) {
+            allGraphCmsDevBlog(sort: {order: DESC, fields: date}) {
               nodes {
                 author
                 id
