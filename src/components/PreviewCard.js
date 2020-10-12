@@ -18,9 +18,9 @@ const PreviewCard = ( { key, slug, title, date, sortCont, time, preview , tags }
     {preview ? <Img
     className="rounded-top"
     style={ ImgHead }
-    sizes={preview}/> : null }
+    fluid={preview}/> : null }
 
-    <Link to={ slug } 
+    <Link to={ `/${slug}` } 
     key={ key }
     style={ MaxWidth }
     className="card rounded-0 mb-2 p-3 mx-auto">

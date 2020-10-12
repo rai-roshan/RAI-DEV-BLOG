@@ -4,8 +4,8 @@ const GetAllTags = () => {
     const data = useStaticQuery(
         graphql`
         query AllTagsQuery {
-            allMdx {
-              group(field: frontmatter___tags) {
+            allGraphCmsDevBlog {
+              group(field: tags) {
                 fieldValue
                 totalCount
               }
@@ -13,7 +13,7 @@ const GetAllTags = () => {
           }
         `);
 
-    return data.allMdx.group;
+    return data.allGraphCmsDevBlog.group;
 }
 
 export default GetAllTags;

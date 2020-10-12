@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
     siteMetadata : {
         title : "RAI",
@@ -8,34 +10,33 @@ module.exports = {
         'gatsby-plugin-sharp',
         'gatsby-transformer-sharp',
         'gatsby-plugin-styled-components',
-        {
-            resolve : 'gatsby-plugin-mdx',
-            options : {
-                extensions : ['.mdx' , '.md']
-            }
-        },
         'gatsby-remark-reading-time',
         {
-            resolve : 'gatsby-source-filesystem',
-            options : {
-                path : `${__dirname}/posts`,
-                name : 'posts',
-                gatsbyRemarkPlugins: [
-                    {
-                      resolve: `gatsby-remark-images`,
-                      options: {
-                        maxWidth: 590,
-                      },
-                    },
-                  ],
-                plugins: [
-                    {
-                      resolve: `gatsby-remark-images`,
-                      options: {
-                        maxWidth: 590,
-                      },
-                    },
-                  ]
-            }
-        }]
+          resolve: `gatsby-source-graphcms`,
+          options: {
+            endpoint: process.env.GATSBY_ENDPOINT,
+            buildMarkdownNodes: true,
+            downloadLocalImages: true
+          },
+        },
+        {
+          resolve: `gatsby-plugin-mdx`,
+          options: {
+            extensions: [`.mdx`, `.md`],
+          },
+        },
+      ]
 };
+
+/*
+{
+          resolve: 'gatsby-source-graphql',
+          options: {
+            typeName: 'GRAPHCMS',
+            fieldName: 'graphCmsData',
+            url: 'https://api-ap-northeast-1.graphcms.com/v2/ckfv9pug9j9wo01yzatik6onm/master',
+          }
+        }
+
+        
+*/

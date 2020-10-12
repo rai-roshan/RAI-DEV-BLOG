@@ -6,6 +6,7 @@ import Img from 'gatsby-image';
 import Layout from '../components/Layout';
 import BlogTitle from '../components/BlogTitle';
 import RightPanel from '../components/RightPanel';
+import Dump from '../components/Dump';
 
 const Article = {
   maxWidth : "50rem",
@@ -30,25 +31,25 @@ const ImgHead = {
 
 
 const BlogPost = ({data}) => {
-    const { frontmatter , body , featuredImg } = data.mdx;
-    console.log("===========tags : ", frontmatter.tags);
+    const { id, title, date, tags, coverPhoto, contentMdx } = data.allGraphCmsDevBlog.nodes[0];
+    //console.log("===========tags : ", tags);
     return (
     <Layout>
-      <div className="row w-100">
+      <div className="row">
           
-          <div style={ Article } className="col-lg-9 col-md-12 mx-auto px-0">
+          <div style={ Article } className="col-lg-9 col-md-12 col-sm-12 mx-auto px-0">
             
-            { featuredImg ? <Img
+            { coverPhoto ? <Img
             style={ ImgHead }
-            sizes={featuredImg.childImageSharp.sizes}/> : null }
+            fluid={coverPhoto.localFile.childImageSharp.fluid}/> : null }
 
             <BlogTitle
-            title={ frontmatter.title }
-            date={ frontmatter.date } 
-            tags={ frontmatter.tags }/>
+            title={ title }
+            date={ date } 
+            tags={ tags }/>
 
             <div style={ MainCont }>
-            <MDXRenderer>{ body }</MDXRenderer>
+            <MDXRenderer>{ contentMdx.markdownNode.childMdx.body }</MDXRenderer> 
             </div>
 
           </div>
@@ -59,34 +60,33 @@ const BlogPost = ({data}) => {
 };
 
 export const PostQuery = graphql`
-     query PostQuery($slug: String!) {
-        mdx(fields: {slug: {eq: $slug}}) {
-          featuredImg {
-            childImageSharp {
-                sizes(maxWidth: 3000, maxHeight: 1400) {
-                    ...GatsbyImageSharpSizes
-                }
-            }
-        }
-            frontmatter {
-                date(formatString: "DD MMMM YYYY")
-                title
-                tags
-                published
-                
-              }
-        body
-    }}`;
-
-export default BlogPost;
-
-/*
-cover {
-                  publicURL
-                  childImageSharp {
-                    sizes(maxWidth: 3000, maxHeight: 1400) {
-                      ...GatsbyImageSharpSizes
-                    }
+    query PostQuery($slug: ID!) {
+        allGraphCmsDevBlog(filter: {remoteId: {eq: $slug}}) {
+          nodes {
+            id
+            title
+            date
+            tags
+            coverPhoto {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 3000, maxHeight: 1400){
+                    ...GatsbyImageSharpFluid
                   }
                 }
-                */
+              }
+            }
+            contentMdx {
+                markdownNode {
+                  childMdx {
+                    body
+                  }
+                }
+              }
+          }
+        }
+      }
+      `;
+
+export default BlogPost;
+//maxHeight: 1400

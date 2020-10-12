@@ -8,33 +8,33 @@ import PreviewCard from './PreviewCard';
 
 //
 const AllPost = ({ allPosts }) => {
-    console.log("data : ", allPosts);
+    //console.log("data : ", allPosts);
     return (<div className="col-lg-6 col-md-8 col-sm-12">
           <FadeIn>
           
-          {allPosts.map(({ id, fields, excerpt, frontmatter , featuredImg }, index) => {
+          {allPosts.map(({ id, remoteId, title, tags, date, author, contentMdx, coverPhoto }, index) => {
   
             return index === 0 ? <PreviewCard 
-                  preview={ featuredImg ? featuredImg.childImageSharp.sizes : null }
+                  preview={ coverPhoto ? coverPhoto.localFile ? coverPhoto.localFile.childImageSharp.fluid : null : null }
                   key={id}
-                  slug={ fields.slug }
-                  title={ frontmatter.title }
-                  date={ frontmatter.date }
-                  sortCont={ excerpt }
-                  time={ fields.readingTime.text }
-                  tags={ frontmatter.tags } /> :
+                  slug={ remoteId }
+                  title={ title }
+                  date={ date }
+                  sortCont={ contentMdx.markdownNode.childMdx.excerpt }
+                  time={ `${contentMdx.markdownNode.childMdx.wordCount.words} words` }
+                  tags={ tags } /> :
                   <PostCard 
-                    key={id}
-                    slug={ fields.slug }
-                    title={ frontmatter.title }
-                    date={ frontmatter.date }
-                    sortCont={ excerpt }
-                    time={ fields.readingTime.text }
-                    tags={ frontmatter.tags } />
-          })}
+                  key={id}
+                  slug={ remoteId }
+                  title={ title }
+                  date={ date }
+                  sortCont={ contentMdx.markdownNode.childMdx.excerpt }
+                  time={ `${contentMdx.markdownNode.childMdx.wordCount.words} words` }
+                  tags={ tags } />
+          }) }
             
           {
-          //<Dump data={ data }/>
+          //<Dump data={ allPosts }/>
           }
         </FadeIn>
         </div>
@@ -43,3 +43,5 @@ const AllPost = ({ allPosts }) => {
   };
   
 export default AllPost;
+//contentMdx.markdownNode.childMdx.excerpt
+//contentMdx.markdownNode.childMdx.excerpt

@@ -1,9 +1,10 @@
 import { graphql, useStaticQuery } from 'gatsby';
+import React from 'react';
 
 const useSiteMetadata = () => {
     const { site } = useStaticQuery(
         graphql`
-        query MyQuery {
+        query SiteMetaData {
             site {
               siteMetadata {
                 description

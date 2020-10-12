@@ -1,0 +1,26 @@
+fragment DevBlog on DevBlog {
+  stage
+  remoteId: id
+  createdAt
+  updatedAt
+  publishedAt
+  title
+  date
+  author
+  coverPhoto {
+    ... on Asset {
+      remoteTypeName: __typename
+      remoteId: id
+      locale
+    }
+  }
+  tags
+  contentMdx {
+    ... on RichText {
+      raw
+      html
+      markdown
+      text
+    }
+  }
+}

@@ -1,41 +1,34 @@
 import { MDXProvider } from '@mdx-js/react';
 import React from 'react';
-
 import AllPostProvider from './src/contexts/AllPostContext';
-
 import Code from './src/components/Code';
 
 const components = {
-    h2 : ( {children} )=>(
+    strong : ( {children} )=>(
     <h2 style={ {color : 'rebeccapurple'} }>{ children }</h2>
     ),
     img : (props)=>(
-      <div className="w-100 d-flex align-items-center justify-content-between">
-          <img {...props} />
+      <div className="d-flex align-items-center justify-content-between">
+          <img className="mx-auto w-100" alt="name"  {...props} />
       </div>
     ),
     'p.inlineCode' : props => (
-        <code style={ {backgroundColor : 'lightgray'} }>{ props.children }</code>
+        <code>{ props.children }</code>
     ),
-    pre : ({ children : { props } }) => {
-        if(props.mdxType === 'code'){
-          return(
-            <Code
-            codeString={ props.children.trim() }
-            language={
-              props.className && props.className.replace('language-','')
-            }
-            {...props}/>
-          )
-        }
-      },
+    Code : ({children}) => {   
+        return <div>{ children }</div>
+    },
+    
 };
 
 export const wrapRootElement = ( {element} )=>(
     <AllPostProvider>
-    <MDXProvider 
-    components={ components }>
+    <MDXProvider components={ components }>
         { element }
     </MDXProvider>
     </AllPostProvider>
 );
+
+/*
+'
+*/

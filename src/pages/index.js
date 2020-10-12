@@ -8,27 +8,25 @@ import RightPanel from '../components/RightPanel';
 import Footer from '../components/footer';
 //import Dump from '../components/Dump';
 
-import GetAllPost from '../hooks/getAllPost';
+import GetAllPost from '../hooks/getAllPosts';
 import { AllPostContext } from '../contexts/AllPostContext';
 
 const App = ( ) => {
 
-  //const data = GetAllPost();
+  const data = GetAllPost();
   const {allPosts} = useContext(AllPostContext);
 
-  console.log("context data : ", allPosts);
+  //console.log("context data : ", allPosts);
 
   return <Layout>
       <div className="row">
-      <LeftPanel/>
+      <LeftPanel />
       <AllPost allPosts={allPosts} />
-      <RightPanel/>
+      <RightPanel />
       </div>
-      <Footer/>
       </Layout>
 };
 
 export default App;
 
   
-

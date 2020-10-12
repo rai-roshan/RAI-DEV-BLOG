@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AllPostContext } from '../contexts/AllPostContext';
 
-import GetAllPost from '../hooks/getAllPost';
+import GetAllPost from '../hooks/getAllPosts';
 
 const SearchBar = ( ) => {
 
@@ -14,8 +14,8 @@ const SearchBar = ( ) => {
         const allPostsX = allPosts;
 
         const filterData = allPostsX.filter( post => {
-            const description = post.excerpt;
-            const { title, tags } = post.frontmatter;
+            const description = post.contentMdx.markdownNode.childMdx.excerpt;
+            const { title, tags } = post;
 
             return (
                 description.toLowerCase().includes(queryX.toLowerCase()) ||        
@@ -29,7 +29,7 @@ const SearchBar = ( ) => {
     };
 
     if(query === ''){
-        setAllPosts(GetAllPost().allMdx.nodes);
+        setAllPosts(GetAllPost().allGraphCmsDevBlog.nodes);
     }
     else{
         setAllPosts(searchResult);

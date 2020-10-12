@@ -9,3 +9,8 @@ build
 #other
 .DS_Store
 yarn-error.log
+
+#environment
+.env
+.env.development
+.env.production

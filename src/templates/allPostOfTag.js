@@ -12,50 +12,45 @@ const AllPostOfTag = ({data}) => {
     return <Layout>
       <div className="row">
       <LeftPanel/>
-      <AllPost allPosts={data.allMdx.nodes} /> 
+      <AllPost allPosts={data.allGraphCmsDevBlog.nodes} /> 
       <RightPanel/>
       </div>
       </Layout>
 };
 
-export const AllPostOfTagQuery = graphql`
-query AllPostOfTagQuery($tag : String!) {
-    allMdx(filter: {frontmatter: {tags: {eq: $tag }}}) {
-     nodes {
-        featuredImg {
-            childImageSharp {
-                sizes(maxWidth: 3000, maxHeight: 1400) {
-                    ...GatsbyImageSharpSizes
-                }
-            }
-        }
-          excerpt(pruneLength: 250)   
-          id
-          frontmatter {
-              date(formatString: "DD MMMM YYYY")
-              published
-              title
-              tags
-              
-          }
-          fields {
-              slug
-              readingTime {
-              text
-              }
-          }
-          } 
-    }
-  }
-`; 
-
 export default AllPostOfTag;
-/*
-cover {
-                publicURL
-                childImageSharp {
-                    sizes(maxWidth: 3000, maxHeight: 1400) {
-                    ...GatsbyImageSharpSizes
-                    }
-                }}
-                */
+
+export const myTagQuery = graphql`
+query AllPostOfTagQuery($tag : String!) {
+allGraphCmsDevBlog(filter: {tags: {glob: $tag}}) {
+    nodes {
+      author
+      id
+      remoteId
+      title
+      tags
+      date
+      contentMdx {
+        markdownNode {
+          childMdx {
+            excerpt(pruneLength: 200)
+            timeToRead
+            wordCount {
+              paragraphs
+              sentences
+              words
+            }
+          }
+        }
+      }
+      coverPhoto {
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 3000, maxHeight: 1400){
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    }
+  }}`;
