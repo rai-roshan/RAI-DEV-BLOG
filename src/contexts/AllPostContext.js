@@ -2,7 +2,8 @@ import React,{ createContext, useState } from 'react';
 
 import GetAllPost from '../hooks/getAllPosts';
 
-export const AllPostContext = createContext();
+const initialState = { allPosts : [] , setAllPosts : (x)=>{ "nothing" } };
+export const AllPostContext = createContext(initialState);
 
 const AllPostProvider = ( props ) => {
 
